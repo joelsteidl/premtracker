@@ -49,6 +49,7 @@ header .logo {
 @media (max-width: 700px) {
   .club-card {
     grid-template-columns: 1fr;
+    padding: 25px;
   }
 }
 

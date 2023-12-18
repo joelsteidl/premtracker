@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 export default function RootLayout({ children }) {
   return (
-    <div class="container">
+    <div className="container">
       <Head>
         <title>PremTracker 2023/24</title>
       </Head>
@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
           alt="PL Standings"
           width="90"
         />
-        <div class="logo-text">
+        <div className="logo-text">
           <h1>PremTracker</h1>
           <h2>2023/24</h2>
         </div>

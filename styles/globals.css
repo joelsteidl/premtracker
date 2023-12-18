@@ -7,7 +7,7 @@ body {
 .container {
   max-width: 1200px; /* Set the maximum width of the content */
   margin: 0 auto; /* Center the content horizontally */
-  width: 90%; /* Set the width of the content to be 90% of the viewport width */
+  width: 98%; /* Set the width of the content to be 90% of the viewport width */
 }
 header {
   display: flex;

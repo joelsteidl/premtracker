@@ -2,7 +2,7 @@ import ClubNav from "./ClubNav";
 import Head from 'next/head';
 import { useEffect } from 'react';
 import MicroModal from 'micromodal';
-import smoothscroll from 'smoothscroll-polyfill';
+import { scroller } from 'react-scroll';
 
 export default function RootLayout({ children, sortedTeams }) {
   useEffect(() => {
@@ -30,12 +30,16 @@ export default function RootLayout({ children, sortedTeams }) {
 
         // get the id of the target element
         const id = event.currentTarget.getAttribute('href');
-        const targetElement = document.querySelector(id.startsWith('/') ? id.substring(1) : id);
+        const targetElement = id.startsWith('/#') ? id.substring(2) : id;
 
         // scroll to the anchor only if the modal is open
         if (menuButton.classList.contains('is-active') && targetElement) {
-          smoothscroll.polyfill();
-          targetElement.scrollIntoView({ behavior: 'smooth' });
+          scroller.scrollTo(targetElement, {
+            duration: 800,
+            delay: 0,
+            smooth: 'easeInOutQuart'
+          });
+
           toggleModal();
         }
       });

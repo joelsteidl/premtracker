@@ -10,13 +10,13 @@ a.club-nav {
   text-decoration: none;
 }
 
-a.club-nav:hover {
-  transform: scale(1.1);
-}
-
 a.club-nav {
   position: relative;
   overflow: hidden;
+}
+
+a.club-nav:hover, a.club-nav:active {
+  transform: scale(1.1);
 }
 
 a.club-nav::before {
@@ -31,11 +31,11 @@ a.club-nav::before {
   z-index: -1;
 }
 
-a.club-nav:hover::before {
+a.club-nav:hover::before, a.club-nav:active::before {
   left: 0;
 }
 
-a.inverse.club-nav:hover {
+a.inverse.club-nav:hover, a.inverse.club-nav:active {
   color: #333333;
 }
 

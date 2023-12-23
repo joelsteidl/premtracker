@@ -2,6 +2,7 @@ import ClubNav from "./ClubNav";
 import Head from 'next/head';
 import { useEffect } from 'react';
 import MicroModal from 'micromodal';
+import smoothscroll from 'smoothscroll-polyfill';
 
 export default function RootLayout({ children, sortedTeams }) {
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function RootLayout({ children, sortedTeams }) {
 
         // scroll to the anchor only if the modal is open
         if (menuButton.classList.contains('is-active') && targetElement) {
+          smoothscroll.polyfill();
           targetElement.scrollIntoView({ behavior: 'smooth' });
           toggleModal();
         }

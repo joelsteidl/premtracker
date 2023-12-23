@@ -34,3 +34,10 @@
   margin-left: auto;
   font-weight: bold;
 }
+.inverse .club-card-stat-suffix,
+.inverse .club-card-stat-label {
+  color: rgba(51, 51, 51, 0.7);
+}
+.inverse .club-card-stat {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}

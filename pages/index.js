@@ -228,20 +228,21 @@ export async function getServerSideProps({ req, res }) {
     return team ? { ...standing, team } : standing;
   });
 
-  // console.log(combinedData);
+  const sortedTeams = [...dataTeams.teams].sort((a, b) => a.shortName.localeCompare(b.shortName));
 
   return {
     props: {
-      standings: combinedData
+      standings: combinedData,
+      sortedTeams: sortedTeams,
     },
   };
 }
 
-export default function Standings({ standings, index }) {
+export default function Standings({ standings, sortedTeams }) {
   return (
-    <Layout title="PL Stats">
+    <Layout title="PL Stats" sortedTeams={sortedTeams}>
       {standings.map((standing) => (
-        <ClubCard standing={standing} key={standing.team.id} />
+        <ClubCard standing={standing} key={`standing-${standing.team.id}`} />
       ))}
     </Layout>
   );

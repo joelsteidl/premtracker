@@ -1,0 +1,56 @@
+a.club-nav {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  background-color: transparent;
+  align-items: center;
+  column-gap: 15px;
+  padding: 15px 25px;
+  transition: transform 0.3s ease;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+a.club-nav:hover {
+  transform: scale(1.1);
+}
+
+a.club-nav {
+  position: relative;
+  overflow: hidden;
+}
+
+a.club-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--club-color);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+a.club-nav:hover::before {
+  left: 0;
+}
+
+a.inverse.club-nav:hover {
+  color: #333333;
+}
+
+.club-nav-logo {
+  width: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.club-nav-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.club-nav:hover {
+  transform: scale(1.05);
+}

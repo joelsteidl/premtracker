@@ -3,7 +3,7 @@ import ClubCardStat from "./ClubCardStat";
 const ClubCard = ({ standing }) => {
   const isInverse = ['lut', 'not', 'tot'].includes(standing.team.tla.toLowerCase());
   return (
-    <div className={`club-card club-${standing.team.tla.toLowerCase()} ${isInverse ? 'inverse' : ''}`}>
+    <div id={`club-${standing.team.tla.toLowerCase()}`} className={['club-card', `club-${standing.team.tla.toLowerCase()}`, isInverse ? 'inverse' : ''].filter(Boolean).join(' ')}>
       <div className="club-card-tla">{standing.team.tla}</div>
       <div className="club-card-info">
         <div className="club-card-logo">

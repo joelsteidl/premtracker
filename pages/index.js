@@ -1,25 +1,27 @@
 import ClubCard from '../components/ClubCard'
 import Layout from '../components/Layout'
 
-export async function getServerSideProps({ req, res }) {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=60, stale-while-revalidate=120'
-  )
+export async function getStaticProps() {
 
-  async function fetchWithCache(url, options) {
+  async function fetchData(url, options) {
     const response = await fetch(url, options);
     const data = await response.json();
     return data;
   }
 
-  const dataStandings = await fetchWithCache('https://api.football-data.org/v4/competitions/PL/standings?season=2023', {
+  const dataStandings = await fetchData('https://api.football-data.org/v4/competitions/PL/standings?season=2023', {
     headers: {
       'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEY
     }
   });
 
-  const dataTeams = await fetchWithCache('https://api.football-data.org/v4/competitions/PL/teams?season=2023', {
+  const dataTeams = await fetchData('https://api.football-data.org/v4/competitions/PL/teams?season=2023', {
+    headers: {
+      'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEY
+    }
+  });
+
+  const dataMatches = await fetchData('https://api.football-data.org/v4/competitions/PL/matches?season=2023', {
     headers: {
       'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEY
     }
@@ -207,6 +209,15 @@ export async function getServerSideProps({ req, res }) {
     return staticData ? { ...team, ...staticData } : team;
   });
 
+  // Get match data.
+  dataTeams.teams = dataTeams.teams.map(team => {
+    const teamId = team.id;
+    const teamMatches = dataMatches.matches.filter(match =>
+      match.homeTeam.id === teamId || match.awayTeam.id === teamId
+    );
+    return { ...team, matches: teamMatches };
+  });
+
   // Rank data.
   dataTeams.teams.map(team => {
     team.teamAgeRank = getTeamRank(dataTeams.teams, team.id, 'teamAge', false);
@@ -235,6 +246,7 @@ export async function getServerSideProps({ req, res }) {
       standings: combinedData,
       sortedTeams: sortedTeams,
     },
+    revalidate: 60,
   };
 }
 

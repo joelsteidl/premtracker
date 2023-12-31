@@ -1,13 +1,21 @@
 import ClubCardStat from "./ClubCardStat";
+import ClubMatches from "./ClubMatches";
+import MicroModal from 'micromodal';
 
 const ClubCard = ({ standing }) => {
+
   const isInverse = ['lut', 'not', 'tot'].includes(standing.team.tla.toLowerCase());
+  const openModal = (teamTla) => {
+    MicroModal.show(`modal-${teamTla}`, {
+      disableScroll: true
+    });
+  };
   return (
     <div id={`club-${standing.team.tla.toLowerCase()}`} className={['club-card', `club-${standing.team.tla.toLowerCase()}`, isInverse ? 'inverse' : ''].filter(Boolean).join(' ')}>
       <div className="club-card-tla">{standing.team.tla}</div>
       <div className="club-card-info">
         <div className="club-card-logo">
-          <img src={`/club-logos/${standing.team.tla.toLowerCase()}.png`} alt="{standing.team.shortName} Crest" width="120" />
+          <img src={`/club-logos/${standing.team.tla.toLowerCase()}.png`} alt="{standing.team.shortName} Crest" width="110" />
         </div>
         <div className="club-card-info-rank">
           <span className="club-card-rank-position">{`#${standing.position}`}</span>
@@ -24,6 +32,12 @@ const ClubCard = ({ standing }) => {
             <p className="standing-form-label">Last 5 Games</p>
           </div>
         )}
+          <button id={`modal-launch-${standing.team.tla}`} type="button" className="modal-results-launch learn-more" aria-label="Open results for {standing.team.shortName}" aria-controls="navigation" aria-expanded="false" onClick={() => openModal(standing.team.tla)}>
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">View {standing.team.tla} Results</span>
+          </button>
       </div>
 
       <div className="club-card-stats">
@@ -108,6 +122,10 @@ const ClubCard = ({ standing }) => {
           suffix={`${standing.team.zodiacSign.count} Players`}
         />
       </div>
+      <ClubMatches
+          key={`matches-$standing.team.id`}
+          standing={standing}
+        />
     </div>
   );
 }

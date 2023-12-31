@@ -74,8 +74,8 @@ export default function RootLayout({ children, sortedTeams }) {
       </header>
       <main>
         <button id="menu-button" className="hamburger hamburger--spin" type="button" aria-label="Open Menu" aria-controls="navigation" aria-expanded="false">
-          <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
+          <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
           </span>
         </button>
         {children}
@@ -84,7 +84,7 @@ export default function RootLayout({ children, sortedTeams }) {
         <p>Standings and team data provided by <a href="https://www.football-data.org/">football-data.org</a>. Stadium capacities provided by Wikipedia (Updated Dec 2023). Salary data provided by <a href="https://www.spotrac.com/epl/payroll/">spotrac.com</a>. (Updated Dec 2023) Not associated with the Premier League.</p>
       </footer>
       <div id="nav-modal" className="modal" aria-hidden="true">
-        <div tabindex="-1" data-micromodal-close>
+        <div tabIndex="-1" data-micromodal-close>
           <nav role="dialog" aria-modal="true">
             {sortedTeams.map((team) => (
               <ClubNav team={team} key={`nav-${team.id}`} />

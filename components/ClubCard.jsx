@@ -76,10 +76,11 @@ const ClubCard = ({ standing }) => {
           suffix="%"
         />
         <ClubCardStat
-          key={`country-$standing.team.id`}
-          label="Most Represented Country"
-          value={standing.team.mostRepresentedNationality.nationality}
-          suffix={`${standing.team.mostRepresentedNationality.count} Players`}
+          key={`england-$standing.team.id`}
+          label="Players from England"
+          rank={standing.team.englandPlayerPercentageRank}
+          value={standing.team.englandPlayerPercentage}
+          suffix="%"
         />
         <ClubCardStat
           key={`usa-$standing.team.id`}

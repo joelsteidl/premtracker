@@ -76,24 +76,6 @@ export async function getStaticProps() {
     }, { oldest: null, youngest: null });
   };
 
-  function getMostRepresentedNationality(squad) {
-    const nationalityCount = squad.reduce((acc, player) => {
-      acc[player.nationality] = (acc[player.nationality] || 0) + 1;
-      return acc;
-    }, {});
-
-    let maxCount = 0;
-    let maxNationality = '';
-    for (const nationality in nationalityCount) {
-      if (nationalityCount[nationality] > maxCount) {
-        maxCount = nationalityCount[nationality];
-        maxNationality = nationality;
-      }
-    }
-
-    return { nationality: maxNationality, count: maxCount };
-  }
-
   function calculateEuropeanPlayerPercentage(squad) {
     const europeanCountries = ['Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Bulgaria', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'England', 'Estonia', 'Finland', 'France', 'Georgia', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Kazakhstan', 'Kosovo', 'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands', 'North Macedonia', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Vatican City'];
     const totalPlayerCount = squad.length;
@@ -161,12 +143,12 @@ export async function getStaticProps() {
     // Get the percentage of European players.
     team.europeanPlayerPercentage = calculateEuropeanPlayerPercentage(team.squad);
 
+    // Get the percentage of players from England.
+    team.englandPlayerPercentage = parseFloat(((team.squad.filter(player => player.nationality === 'England').length / team.squad.length) * 100).toFixed(2));
+
     // Get the number of unique nationalities.
     const nationalities = team.squad.map(player => player.nationality);
     team.uniqueNationalitiesCount = new Set(nationalities).size;
-
-    // Get the most represented nationality.
-    team.mostRepresentedNationality = getMostRepresentedNationality(team.squad);
 
     // Get the number of players from the USA.
     team.usaPlayerCount = team.squad.filter(player => player.nationality === 'USA').length;
@@ -230,6 +212,7 @@ export async function getStaticProps() {
     team.oldestPlayerRank = getTeamRank(dataTeams.teams, team.id, 'oldestPlayer.age', false);
     team.youngestPlayerRank = getTeamRank(dataTeams.teams, team.id, 'youngestPlayer.age', true);
     team.usaPlayerCountRank = getTeamRank(dataTeams.teams, team.id, 'usaPlayerCount', false);
+    team.englandPlayerPercentageRank = getTeamRank(dataTeams.teams, team.id, 'englandPlayerPercentage', false);
     return team;
   });
 

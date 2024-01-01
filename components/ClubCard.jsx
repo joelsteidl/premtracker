@@ -33,10 +33,10 @@ const ClubCard = ({ standing }) => {
           </div>
         )}
           <button id={`modal-launch-${standing.team.tla}`} type="button" className="modal-results-launch learn-more" aria-label="Open results for {standing.team.shortName}" aria-controls="navigation" aria-expanded="false" onClick={() => openModal(standing.team.tla)}>
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
+            <span className="circle" aria-hidden="true">
+              <span className="icon arrow"></span>
             </span>
-            <span class="button-text">View {standing.team.tla} Results</span>
+            <span className="button-text">View {standing.team.tla} Results</span>
           </button>
       </div>
 

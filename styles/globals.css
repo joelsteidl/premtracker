@@ -155,8 +155,8 @@ nav {
 .hamburger {
   border: none;
   cursor: pointer;
-  width: 65px; /* adjust this to your desired size */
-  height: 65px; /* adjust this to your desired size */
+  width: 65px;
+  height: 65px;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   background-color: hsl(0, 0%, 100%);

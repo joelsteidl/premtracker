@@ -7,7 +7,7 @@ const ClubMatches = ({ standing }) => {
       <div tabIndex="-1" data-micromodal-close>
         <div className="match-modal-inner" role="dialog" aria-modal="true">
           <div className={['club-card-info', `club-${standing.team.tla.toLowerCase()}`, isInverse ? 'inverse' : ''].filter(Boolean).join(' ')}>
-            <button id={`button-close-${standing.team.tla}`} className="hamburger hamburger--spin is-active match-close" type="button" aria-label="Close Results" aria-controls="navigation" aria-expanded="true" data-micromodal-close>
+            <button id={`button-close-${standing.team.tla}`} className="hamburger hamburger--spin is-active" type="button" aria-label="Close Results" aria-controls="navigation" aria-expanded="true" data-micromodal-close>
               <span className="hamburger-box">
                 <span className="hamburger-inner"></span>
               </span>

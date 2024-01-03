@@ -73,7 +73,7 @@ export default function RootLayout({ children, sortedTeams }) {
         </div>
       </header>
       <main>
-        <button id="menu-button" className="hamburger hamburger--spin" type="button" aria-label="Open Menu" aria-controls="navigation" aria-expanded="false">
+        <button id="menu-button" className="hamburger hamburger--spin hamburger-button" type="button" aria-label="Open Menu" aria-controls="navigation" aria-expanded="false">
           <span className="hamburger-box">
             <span className="hamburger-inner"></span>
           </span>

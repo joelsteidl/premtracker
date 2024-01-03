@@ -152,7 +152,7 @@ nav {
   width: 98%;
 }
 
-.hamburger {
+button.hamburger-button {
   border: none;
   cursor: pointer;
   width: 65px;

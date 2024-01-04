@@ -29,15 +29,14 @@ const ClubCard = ({ standing }) => {
                 <li key={index} className={`form-outcome ${form.toLowerCase()}`}>{form}</li>
               ))}
             </ul>
-            <p className="standing-form-label">Last 5 Games</p>
+            <div className="standing-form-footer">
+              <p className="standing-form-label">Last 5 Games</p>
+              <button id={`modal-launch-${standing.team.tla}`} type="button" className="modal-results-launch" aria-label="Open results for {standing.team.shortName}" aria-controls="navigation" aria-expanded="false" onClick={() => openModal(standing.team.tla)}>
+                <span className="button-text">{standing.team.tla} Results</span>
+              </button>
+            </div>
           </div>
         )}
-          <button id={`modal-launch-${standing.team.tla}`} type="button" className="modal-results-launch learn-more" aria-label="Open results for {standing.team.shortName}" aria-controls="navigation" aria-expanded="false" onClick={() => openModal(standing.team.tla)}>
-            <span className="circle" aria-hidden="true">
-              <span className="icon arrow"></span>
-            </span>
-            <span className="button-text">View {standing.team.tla} Results</span>
-          </button>
       </div>
 
       <div className="club-card-stats">
@@ -106,15 +105,15 @@ const ClubCard = ({ standing }) => {
           key={`oldest-$standing.team.id`}
           label="Oldest Player"
           rank={standing.team.oldestPlayerRank}
-          value={`${standing.team.oldestPlayer.age}`}
-          suffix={standing.team.oldestPlayer.name}
+          value={`${standing.team.oldestPlayer.name}`}
+          suffix={`${standing.team.oldestPlayer.age} yrs`}
         />
         <ClubCardStat
           key={`youngest-$standing.team.id`}
           label="Youngest Player"
           rank={standing.team.youngestPlayerRank}
-          value={standing.team.youngestPlayer.age}
-          suffix={standing.team.youngestPlayer.name}
+          value={standing.team.youngestPlayer.name}
+          suffix={`${standing.team.youngestPlayer.age} yrs`}
         />
         <ClubCardStat
           key={`zodiac-$standing.team.id`}

@@ -138,4 +138,6 @@ ul.standing-form li:first-child::after {
 .standing-form-label {
   font-weight: 500;
   margin-bottom: 0;
+  margin-top: 10px;
+  font-size: .9rem;
 }

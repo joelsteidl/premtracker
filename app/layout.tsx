@@ -18,7 +18,7 @@ export const viewport: Viewport = {
   ]
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
   title: 'PremTracker 2023/24',
   description: 'Track Premier League standings and statistics for the 2023/24 season',

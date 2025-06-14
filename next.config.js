@@ -14,7 +14,11 @@ const nextConfig = {
   compiler: {
     // Enable styled-components
     styledComponents: true,
-  }
+  },
+  // Turbopack configuration (stable in Next.js 15)
+  turbopack: {
+    // Enable Turbopack for faster builds
+  },
 }
 
 module.exports = nextConfig

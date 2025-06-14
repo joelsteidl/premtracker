@@ -5,6 +5,7 @@ import Image from 'next/image'
 import MicroModal from 'micromodal'
 import ClubCardStat from './ClubCardStat'
 import ClubMatches from './ClubMatches'
+import TeamLogo from './TeamLogo'
 import type { ExtendedStanding } from '@/types'
 import './club-card.css'
 
@@ -25,9 +26,10 @@ export default function ClubCard({ standing }: { standing: ExtendedStanding }) {
       <div className="club-card-tla">{standing.team.tla}</div>
       <div className="club-card-info">
         <div className="club-card-logo">
-          <Image
-            src={`/club-logos/${standing.team.tla.toLowerCase()}.png`} 
-            alt={`${standing.team.shortName} Crest`} 
+          <TeamLogo
+            teamTla={standing.team.tla}
+            teamName={standing.team.shortName}
+            apiLogoUrl={standing.team.crest}
             width={110}
             height={110}
             style={{ objectFit: 'contain', width: 'auto', height: '110px' }}

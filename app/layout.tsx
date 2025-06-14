@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
-import Image from 'next/image'
 import { ReactNode } from 'react'
+import { SeasonProvider } from './lib/SeasonContext'
+import Header from './components/Header'
 import './styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -55,28 +56,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body>
-        <div className="container">
-          <header>
-            <Image
-              className="logo"
-              src="/pl_logo_white.png"
-              alt="PL Standings"
-              width={120}
-              height={80}
-              priority
-            />
-            <div className="logo-text">
-              <h1>PremTracker</h1>
-              <h2>2023/24</h2>
-            </div>
-          </header>
-          <main>
-            {children}
-          </main>
-          <footer>
-            <p>Standings and team data provided by <a href="https://www.football-data.org/">football-data.org</a>. Stadium capacities provided by Wikipedia (Updated Dec 2024). Salary data provided by <a href="https://www.spotrac.com/epl/payroll/">spotrac.com</a>. (Updated Dec 2024) Not associated with the Premier League.</p>
-          </footer>
-        </div>
+        <SeasonProvider>
+          <div className="container">
+            <Header />
+            <main>
+              {children}
+            </main>
+            <footer>
+              <p>Standings and team data provided by <a href="https://www.football-data.org/">football-data.org</a>. Stadium capacities provided by Wikipedia (Updated Dec 2024). Salary data provided by <a href="https://www.spotrac.com/epl/payroll/">spotrac.com</a>. (Updated Dec 2024) Not associated with the Premier League.</p>
+            </footer>
+          </div>
+        </SeasonProvider>
       </body>
     </html>
   )

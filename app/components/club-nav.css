@@ -4,10 +4,12 @@ a.club-nav {
   background-color: transparent;
   align-items: center;
   column-gap: 15px;
-  padding: 15px 25px;
+  padding: 20px 25px;
   transition: transform 0.3s ease;
   color: #FFFFFF;
   text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 a.club-nav {

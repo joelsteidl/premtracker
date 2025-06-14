@@ -55,8 +55,42 @@ function calculateTeamStats(squad: any[], teamData: any) {
 
   // Get manager age from team coach data
   const coach = teamData.coach
-  const managerAge = coach?.dateOfBirth ? 
-    Math.floor((today.getTime() - new Date(coach.dateOfBirth).getTime()) / 31557600000) : 0
+  let managerAge = 0
+  let managerAgeStatus = 'unknown'
+  
+  if (coach?.dateOfBirth) {
+    try {
+      const birthDate = new Date(coach.dateOfBirth)
+      if (!isNaN(birthDate.getTime())) {
+        managerAge = Math.floor((today.getTime() - birthDate.getTime()) / 31557600000)
+        if (managerAge < 0) {
+          console.warn(`Future birth date for team ${teamData.tla || 'unknown'} coach ${coach.name}:`, coach.dateOfBirth)
+          managerAge = 0
+          managerAgeStatus = 'future_date'
+        } else if (managerAge > 100) {
+          console.warn(`Unusually old manager for team ${teamData.tla || 'unknown'} coach ${coach.name}:`, coach.dateOfBirth, `Age: ${managerAge}`)
+          managerAgeStatus = 'very_old'
+        } else {
+          managerAgeStatus = 'valid'
+        }
+        console.log(`Manager age calculated for ${teamData.tla || 'unknown'} (${coach.name}): ${managerAge} years (${managerAgeStatus})`)
+      } else {
+        console.warn(`Invalid coach birth date format for team ${teamData.tla || 'unknown'} coach ${coach.name}:`, coach.dateOfBirth)
+        managerAgeStatus = 'invalid_format'
+      }
+    } catch (error) {
+      console.warn(`Error parsing coach birth date for team ${teamData.tla || 'unknown'} coach ${coach.name}:`, coach.dateOfBirth, error)
+      managerAgeStatus = 'parse_error'
+    }
+  } else {
+    if (coach) {
+      console.warn(`No birth date found for team ${teamData.tla || 'unknown'} coach ${coach.name || 'unnamed'}`)
+      managerAgeStatus = 'missing_birthdate'
+    } else {
+      console.warn(`No coach data found for team ${teamData.tla || 'unknown'}`)
+      managerAgeStatus = 'no_coach'
+    }
+  }
 
   // Calculate team age (years since founding)
   const teamAge = teamData.founded ? 
@@ -65,6 +99,7 @@ function calculateTeamStats(squad: any[], teamData: any) {
 
   return {
     managerAge,
+    managerAgeStatus, // for debugging
     teamAge,
     averageAge: Number((players.reduce((sum, p) => sum + p.age, 0) / players.length).toFixed(1)),
     uniqueNationalitiesCount: nationalities.size,
@@ -104,9 +139,8 @@ function getZodiacSign(date: Date): string {
 function validateTeamData(team: ExtendedStanding): boolean {
   const requiredProperties = [
     'salary',
-    'venueCapacity',
+    'venueCapacity', 
     'venue',
-    'managerAge',
     'oldestPlayer',
     'youngestPlayer',
     'zodiacSign'
@@ -116,17 +150,32 @@ function validateTeamData(team: ExtendedStanding): boolean {
     team.team[prop] === undefined || team.team[prop] === null
   )
 
+  // Special handling for managerAge - allow 0 but require it to be a number
+  if (typeof team.team.managerAge !== 'number') {
+    missingProps.push('managerAge')
+  }
+
   if (missingProps.length > 0) {
-    console.warn(`Team ${team.team.tla} is missing properties:`, missingProps)
+    console.warn(`Team ${team.team.tla} is missing properties:`, missingProps, {
+      managerAge: team.team.managerAge,
+      managerAgeStatus: team.team.managerAgeStatus,
+      managerAgeType: typeof team.team.managerAge
+    })
     return false
+  }
+
+  // Log teams with manager age 0 for debugging
+  if (team.team.managerAge === 0) {
+    console.log(`Team ${team.team.tla} has manager age 0 - Status: ${team.team.managerAgeStatus || 'unknown'}`)
   }
 
   return true
 }
 
-export async function getTeamData() {
+export async function getTeamData(seasonYear?: string) {
   const competitionId = 2021 // Premier League ID
-  const season = 2023 // 2023/24 season
+  // Convert season format from "2023-24" to 2023 for the API
+  const season = seasonYear ? parseInt(seasonYear.split('-')[0]) : 2023
 
   // Fetch standings, matches, and teams data in parallel
   const [standings, matches, teamsData] = await Promise.all([

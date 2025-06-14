@@ -18,5 +18,9 @@ export const STATIC_TEAM_DATA = {
   'SHE': { salary: 26936000, venueCapacity: 32050 },
   'TOT': { salary: 115630000, venueCapacity: 62850 },
   'WHU': { salary: 97656000, venueCapacity: 62500 },
-  'WOL': { salary: 44546000, venueCapacity: 31750 }
+  'WOL': { salary: 44546000, venueCapacity: 31750 },
+  // Added teams for 2024-25 season
+  'LEI': { salary: 65000000, venueCapacity: 32273 }, // Leicester City
+  'IPS': { salary: 25000000, venueCapacity: 30311 }, // Ipswich Town  
+  'SOU': { salary: 55000000, venueCapacity: 32384 }  // Southampton
 }

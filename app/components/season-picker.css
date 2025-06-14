@@ -1,0 +1,90 @@
+.season-picker {
+  position: relative;
+  display: inline-block;
+}
+
+.season-picker-toggle {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  color: #FFFFFF;
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.season-picker-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.season-picker-toggle:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+.season-picker-current {
+  font-family: 'Maven Pro', sans-serif;
+}
+
+.season-picker-arrow {
+  transition: transform 0.2s ease;
+  opacity: 0.7;
+}
+
+.season-picker-arrow.open {
+  transform: rotate(180deg);
+}
+
+.season-picker-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  margin-top: 4px;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.season-picker-option {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+  font-family: 'Maven Pro', sans-serif;
+}
+
+.season-picker-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.season-picker-option.active {
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+}
+
+.season-picker-option.active::after {
+  content: '✓';
+  float: right;
+  opacity: 0.7;
+}

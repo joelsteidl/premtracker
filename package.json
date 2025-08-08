@@ -2,6 +2,10 @@
   "name": "pl-stats-next",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,23 +14,23 @@
   },
   "dependencies": {
     "hamburgers": "^1.2.1",
-    "micromodal": "^0.4.10",
-    "next": "^15.3.3",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "sass": "^1.77.8",
+    "micromodal": "^0.6.1",
+    "next": "^15.4.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "sass": "^1.90.0",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@types/micromodal": "^0.3.5",
-    "@types/node": "22.0.0",
-    "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0",
-    "autoprefixer": "^10.4.20",
-    "eslint": "9.15.0",
-    "eslint-config-next": "15.1.0",
+    "@types/node": "^22.17.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.32.0",
+    "eslint-config-next": "^15.4.6",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "postcss": "^8",
-    "typescript": "5.3.3"
+    "postcss": "^8.5.6",
+    "typescript": "^5.9.2"
   }
 }

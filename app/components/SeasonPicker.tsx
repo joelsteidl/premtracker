@@ -15,9 +15,9 @@ interface SeasonPickerProps {
 }
 
 const AVAILABLE_SEASONS: Season[] = [
+  { id: '2025-26', label: '2025/26', years: '2025/26' },
   { id: '2024-25', label: '2024/25', years: '2024/25' },
   { id: '2023-24', label: '2023/24', years: '2023/24' },
-  // Note: 2025/26 season starts August 16, 2025 - will be added when data is available
 ]
 
 export default function SeasonPicker({ currentSeason, onSeasonChange }: SeasonPickerProps) {
@@ -38,7 +38,7 @@ export default function SeasonPicker({ currentSeason, onSeasonChange }: SeasonPi
         aria-label="Select season"
       >
         <span className="season-picker-current">
-          {currentSeasonData?.label || '2024/25'}
+          {currentSeasonData?.label || '2025/26'}
         </span>
         <svg 
           className={`season-picker-arrow ${isOpen ? 'open' : ''}`}

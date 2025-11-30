@@ -152,6 +152,12 @@ header .logo {
 .club-sou {
   --club-color: rgb(215, 25, 32);
 }
+.club-lee {
+  --club-color: rgb(29, 66, 138);
+}
+.club-sun {
+  --club-color: rgb(235, 23, 43);
+}
 
 /* Stats */
 .club-card-stats {

@@ -10,7 +10,7 @@ interface SeasonContextType {
 const SeasonContext = createContext<SeasonContextType | undefined>(undefined)
 
 export function SeasonProvider({ children }: { children: ReactNode }) {
-  const [currentSeason, setCurrentSeason] = useState('2024-25')
+  const [currentSeason, setCurrentSeason] = useState('2025-26')
 
   return (
     <SeasonContext.Provider value={{ currentSeason, setSeason: setCurrentSeason }}>

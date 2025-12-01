@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image'
 import { Match } from '@/types'
 import { formatMatchDate, formatMatchTime } from '@/app/lib/dateUtils'
+import TeamLogo from './TeamLogo'
 import './club-match.css'
 
 interface ClubMatchProps {
@@ -50,11 +50,12 @@ export default function ClubMatch({ match, teamId }: ClubMatchProps) {
       <div className="match-outcome">
         <div className="match-outcome-home">
           {match.homeTeam.shortName}{' '}
-          <Image 
-            src={`/club-logos/${match.homeTeam.tla.toLowerCase()}.png`}
+          <TeamLogo
+            teamTla={match.homeTeam.tla}
+            teamName={match.homeTeam.shortName}
+            apiLogoUrl={match.homeTeam.crest}
             height={30}
             width={30}
-            alt={`${match.homeTeam.shortName} crest`}
             style={{ objectFit: 'contain', width: 'auto', height: '30px' }}
           />
         </div>
@@ -62,11 +63,12 @@ export default function ClubMatch({ match, teamId }: ClubMatchProps) {
           {matchStatus}
         </div>
         <div className="match-outcome-away">
-          <Image 
-            src={`/club-logos/${match.awayTeam.tla.toLowerCase()}.png`}
+          <TeamLogo
+            teamTla={match.awayTeam.tla}
+            teamName={match.awayTeam.shortName}
+            apiLogoUrl={match.awayTeam.crest}
             height={30}
             width={30}
-            alt={`${match.awayTeam.shortName} crest`}
             style={{ objectFit: 'contain', width: 'auto', height: '30px' }}
           />{' '}
           {match.awayTeam.shortName}

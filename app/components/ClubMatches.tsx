@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import type { ExtendedStanding } from '@/types'
 import ClubMatchesContent from './ClubMatchesContent'
+import TeamLogo from './TeamLogo'
 import './club-matches.css'
 
 interface ClubMatchesProps {
@@ -41,9 +41,10 @@ export default function ClubMatches({ standing }: ClubMatchesProps) {
               </span>
             </button>
             <div className="club-card-logo">
-              <Image
-                src={`/club-logos/${standing.team.tla.toLowerCase()}.png`}
-                alt={`${standing.team.shortName} Crest`}
+              <TeamLogo
+                teamTla={standing.team.tla}
+                teamName={standing.team.shortName}
+                apiLogoUrl={standing.team.crest}
                 width={100}
                 height={100}
                 style={{ objectFit: 'contain', width: 'auto', height: '100px' }}

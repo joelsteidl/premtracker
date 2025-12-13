@@ -21,7 +21,7 @@ export const STATIC_TEAM_DATA = {
   'WOL': { salary: 44546000, venueCapacity: 31750 },
   // Added teams for 2024-25 season
   'LEI': { salary: 65000000, venueCapacity: 32273 }, // Leicester City
-  'IPS': { salary: 25000000, venueCapacity: 30311 }, // Ipswich Town  
+  'IPS': { salary: 25000000, venueCapacity: 30311 }, // Ipswich Town
   'SOU': { salary: 55000000, venueCapacity: 32384 }, // Southampton
   // Added teams for 2025-26 season (promoted from Championship)
   'LEE': { salary: 45000000, venueCapacity: 37890 }, // Leeds United - Elland Road

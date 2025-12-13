@@ -31,7 +31,7 @@ export default function SeasonPicker({ currentSeason, onSeasonChange }: SeasonPi
 
   return (
     <div className="season-picker">
-      <button 
+      <button
         className="season-picker-toggle"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
@@ -40,16 +40,16 @@ export default function SeasonPicker({ currentSeason, onSeasonChange }: SeasonPi
         <span className="season-picker-current">
           {currentSeasonData?.label || '2025/26'}
         </span>
-        <svg 
+        <svg
           className={`season-picker-arrow ${isOpen ? 'open' : ''}`}
-          viewBox="0 0 24 24" 
-          width="16" 
+          viewBox="0 0 24 24"
+          width="16"
           height="16"
         >
           <path d="M7 10l5 5 5-5z" fill="currentColor"/>
         </svg>
       </button>
-      
+
       {isOpen && (
         <div className="season-picker-dropdown">
           {AVAILABLE_SEASONS.map((season) => (
